@@ -6,12 +6,16 @@ var prefix = "-"
 
 var weapons = ["banana", "gun"]
 
+var answers = ["Yes","No","You rely on it","Doubtful","I rely on no","I rely on yes","I don't think so","My instincts say no","My instincts say yes","Can't answer"]
+
 var cmds = `-kill (Kills the selected user.)
 -cmds (This, lol)
 -info (Shows info of a player.)
 -mineinfo (Search for a player minecraft account.) 
--kms (Gun. (banana,gun))
--report @user reason [reports user to man]`
+-kms (KYS with a gun or banana)
+-report @user reason (Reports user to manofmanytalents)
+-8ball (He knows everything)
+-tell @user message (Must be admin) (Uses the bot to tell something to a user using bot.)`
 
 var nor = `Wrong usage.
 -kms (weapon)
@@ -69,6 +73,47 @@ bot.on( "message", message => {
 
 bot.on( "message", message => {
 
+    var msg = message.content;
+
+    if (msg.startsWith( prefix + "tell " )) {
+
+        message.delete()
+        var adminRole = message.guild.roles.find("name", "Administrator");
+        var modRole = message.guild.roles.find("name", "Moderators");
+        if (message.member.roles.has(adminRole.id||modRole.id)) {
+        var findmsg = msg.substr(7).indexOf(" ")
+        if (findmsg) {
+
+            var tellp = msg.substr(findmsg + 7)
+            var plr = msg.substr(7,findmsg - 1)
+
+        }
+
+        var user = plr.substr(1)
+        var finz = bot.users.get(user)
+
+        if (finz) {
+
+            finz.send(tellp)
+
+        } else {
+
+            message.channel.sendMessage(":star: User " + plr + " not found. :star:")
+
+        }
+
+      } else {
+
+         message.channel.sendMessage(":star: You do not have access to this command. :star:")
+
+      }
+
+  }
+
+});
+
+bot.on( "message", message => {
+
     sayin = message.content;
 
     if (sayin.startsWith( prefix + "mineinfo ") ) {
@@ -84,7 +129,7 @@ bot.on( "message", message => {
    * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
    */
   .setColor(0x2EFF00)
-  .setDescription("This account is over 200 days old.")
+  .setDescription("This account is original.")
   .setFooter("Made by KillerBot", "https://i.pinimg.com/736x/22/a2/19/22a21941d8e5fce3c6e9e3a8a258cef4--galaxy-cat-hipster-cat.jpg")
   .setImage("https://crafatar.com/renders/body/" + user )
   .setThumbnail("https://crafatar.com/avatars/" + user )
@@ -117,6 +162,39 @@ bot.on( "message", message => {
         message.author.send("Hi " + message.author + ", here is the list of **commands:**")
 
         message.author.send("```" + cmds + "```")
+
+    }
+
+});
+
+bot.on( "message", message => {
+
+    var sayin = message.content;
+
+    if ( sayin.startsWith(prefix + "8ball ") ) {
+
+      message.delete()
+
+        var question = sayin.substr(6)
+
+        var answer = choose(answers)
+
+        var user = bot.users.get(message.member.id)
+
+const embed = new Discord.RichEmbed()
+  .setTitle("*" + user.username + "*" + " asked:")
+  .setAuthor("Magic 8ball", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/8-Ball_Pool.svg/2000px-8-Ball_Pool.svg.png")
+  /*
+   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+   */
+  .setColor(0x00AE86)
+  .setDescription("**" + question + "**")
+  .setFooter("Magic 8ball", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/8-Ball_Pool.svg/2000px-8-Ball_Pool.svg.png")
+
+  .setTimestamp()
+  .addField("*Magic 8ball* answered:","**" + answer + "**")
+
+  message.channel.send({embed});
 
     }
 
