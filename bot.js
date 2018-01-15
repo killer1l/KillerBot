@@ -62,13 +62,13 @@ bot.on( "message", message => {
 
      if (sayin == "-kms") {
 
-        message.delete()
+       
       message.channel.sendMessage("```" + nor + "```")
 
      }else{
  
      if (sayin.startsWith(prefix + "kms ")) {
-      message.delete()
+     
       weapon = sayin.substr(5)
 
       if (!(weapon === "gun"||"banana")) {
@@ -98,7 +98,7 @@ bot.on( "message", message => {
 
     if (sayin.startsWith( prefix + "say " )) {
 
-      message.delete()
+     
 
       if (checkplayer(message.member,message)) {
 
@@ -122,7 +122,7 @@ bot.on( "message", message => {
 
     if (sayin.startsWith( prefix + "dicksize " )) {
 
-        message.delete()
+       
 
         var dick = sayin.substr(10)
 
@@ -162,7 +162,7 @@ bot.on( "message", message => {
 
     if (msg.startsWith( prefix + "tell " )) {
 
-        message.delete()
+       
         if (checkplayer(message.member,message) === true) {
         var findmsg = msg.substr(7).indexOf(" ")
         if (findmsg) {
@@ -201,7 +201,7 @@ bot.on( "message", message => {
 
     if (sayin.startsWith( prefix + "mineinfo ") ) {
 
-       message.delete()
+      
 
        user = sayin.substr(10)
 
@@ -240,7 +240,7 @@ bot.on( "message", message => {
 
     if ( sayin.startsWith(prefix + "cmds") ) {
 
-      message.delete()
+     
 
         message.author.send("Hi " + message.author + ", here is the list of **commands:**")
 
@@ -256,7 +256,7 @@ bot.on( "message", message => {
 
     if ( sayin.startsWith(prefix + "8ball ") ) {
 
-      message.delete()
+     
 
         var question = sayin.substr(6)
 
@@ -289,7 +289,7 @@ bot.on( "message", message => {
 
     if (sayin.startsWith(prefix + "report ")) {
 
-        message.delete()
+       
         var findmsg = sayin.substr(8).indexOf(" ")
         if (findmsg) {
 
@@ -325,7 +325,7 @@ bot.on( "message", message => {
 
     if (sayin === "-rc7status") {
 
-        message.delete()
+       
 
         message.channel.sendMessage("http://i.imgur.com/izP9OYM.png")
         message.channel.sendMessage("Obvious?")
@@ -340,7 +340,7 @@ bot.on( "message", message => {
 
     if(sayin.startsWith( prefix + "kill " )) {
 
-        message.delete()
+       
         var finding = sayin.substr(7)
         var found = finding.substr(1)
 
@@ -377,7 +377,7 @@ bot.on( "message", message => {
 
      if(sayin.startsWith( prefix + "info " )) {
         
-        message.delete()
+       
         var user = sayin.substr(7)
         var lol = user.substr(1,18)
         if(bot.users.get(lol)) {
