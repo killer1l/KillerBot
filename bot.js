@@ -6,7 +6,7 @@ var prefix = "-"
 
 var weapons = ["banana", "gun"]
 
-var answers = ["Yes","No","You rely on it","Doubtful","I rely on no","I rely on yes","I don't think so","My instincts say no","My instincts say yes","Can't answer"]
+var answers = ["Yes","No","Doubtful","I rely on no","I rely on yes","I don't think so","My instincts say no","My instincts say yes","Definitly","Nope","Yep"]
 
 var cmds = `-kill (Kills the selected user.)
 -cmds (This, lol)
@@ -42,34 +42,49 @@ bot.on( "message", message => {
      if (sayin == "-kms") {
 
         message.delete()
-     	message.channel.sendMessage("```" + nor + "```")
+      message.channel.sendMessage("```" + nor + "```")
 
      }else{
  
      if (sayin.startsWith(prefix + "kms ")) {
-     	message.delete()
-     	weapon = sayin.substr(5)
+      message.delete()
+      weapon = sayin.substr(5)
 
-     	if (!(weapon === "gun"||"banana")) {
+      if (!(weapon === "gun"||"banana")) {
 
             message.channel.sendMessage("```" + nol + "```")
 
-     	} else {
+      } else {
 
             if (weapon === "gun") {
-            	message.channel.sendMessage(message.author + " just killed himself with a freakin :gun:. Shame on you.")
+              message.channel.sendMessage(message.author + " just killed himself with a freakin :gun:. Shame on you.")
             }
 
             if (weapon === "banana" ) {
-            	message.channel.sendMessage(message.author + " just killed himself with a freakin :banana:. He must have sticked it so far up his ass. lel")
+              message.channel.sendMessage(message.author + " just killed himself with a freakin :banana:. He must have sticked it so far up his ass. lel")
             }
 
-     	}
+      }
      }
 
  }
 
 });
+
+bot.on( "message", message => {
+
+    var sayin = message.content;
+
+    if (sayin.startsWith( prefix + "say " )) {
+        
+        message.delete()
+        var message = sayin.substr(5)
+
+        message.channel.sendMessage(message)
+
+    }
+
+})
 
 bot.on( "message", message => {
 
@@ -157,7 +172,7 @@ bot.on( "message", message => {
 
     if ( sayin.startsWith(prefix + "cmds") ) {
 
-    	message.delete()
+      message.delete()
 
         message.author.send("Hi " + message.author + ", here is the list of **commands:**")
 
