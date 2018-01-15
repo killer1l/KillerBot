@@ -8,6 +8,25 @@ var weapons = ["banana", "gun"]
 
 var answers = ["Yes","No","Doubtful","I rely on no","I rely on yes","I don't think so","My instincts say no","My instincts say yes","Definitly","Nope","Yep"]
 
+var a = "="
+
+function checkplayer(plr,msg) {
+
+    var adminRole = msg.guild.roles.find("name", "Administrator");
+    var modRole = msg.guild.roles.find("name", "Moderators");
+
+    if (plr.roles.has(adminRole.id||modRole.id)) {
+
+        return true
+
+    } else {
+
+        return false
+
+    }
+
+}
+
 var cmds = `-kill (Kills the selected user.)
 -cmds (This, lol)
 -info (Shows info of a player.)
@@ -15,7 +34,9 @@ var cmds = `-kill (Kills the selected user.)
 -kms (KYS with a gun or banana)
 -report @user reason (Reports user to manofmanytalents)
 -8ball (He knows everything)
--tell @user message (Must be admin) (Uses the bot to tell something to a user using bot.)`
+-tell @user message (Must be admin) (Uses the bot to tell something to a user using bot.)
+-say message (Must be admin) (Uses the bot to chat.)
+-dicksize (Shows the player dicksize.)`
 
 var nor = `Wrong usage.
 -kms (weapon)
@@ -76,11 +97,60 @@ bot.on( "message", message => {
     var sayin = message.content;
 
     if (sayin.startsWith( prefix + "say " )) {
-        
-        message.delete()
-        var message = sayin.substr(5)
 
-        message.channel.sendMessage(message)
+      message.delete()
+
+      if (checkplayer(message.member,message)) {
+
+        var msg = sayin.substr(5)
+
+        message.channel.send(msg)
+
+        } else {
+
+        message.channel.sendMessage(":star: You do not have access to this command. :star:")
+
+        }
+
+    }
+
+})
+
+bot.on( "message", message => {
+
+    var sayin = message.content;
+
+    if (sayin.startsWith( prefix + "dicksize " )) {
+
+        message.delete()
+
+        var dick = sayin.substr(10)
+
+        var user = dick.substr(2)
+
+        var rf = user.indexOf(">")
+
+        if (rf) {
+
+        var lil = user.substr(0,rf)
+
+        var lole = bot.users.get(lil)
+
+        if (lole) {
+
+          if (lole.id === "226818219464196096") {
+
+                message.channel.sendMessage(lole + " dicksize: Ɛ=D")
+
+          } else {
+
+               message.channel.sendMessage(lole + " dicksize: Ɛ" + a.repeat(Math.floor(Math.random() * 30 ) + 1) + "D")
+
+          }
+
+        }
+
+        }
 
     }
 
@@ -93,9 +163,7 @@ bot.on( "message", message => {
     if (msg.startsWith( prefix + "tell " )) {
 
         message.delete()
-        var adminRole = message.guild.roles.find("name", "Administrator");
-        var modRole = message.guild.roles.find("name", "Moderators");
-        if (message.member.roles.has(adminRole.id||modRole.id)) {
+        if (checkplayer(message.member,message) === true) {
         var findmsg = msg.substr(7).indexOf(" ")
         if (findmsg) {
 
