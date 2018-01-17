@@ -10,6 +10,10 @@ var answers = ["Yes","No","Doubtful","I rely on no","I rely on yes","I don't thi
 
 var a = "="
 
+function a(b){
+return Math.abs(Math.sin(b + 1) * 100 - Math.floor(Math.sin(b + 1)))
+}
+
 function checkplayer(plr,msg) {
 
     var adminRole = msg.guild.roles.find("name", "Administrator");
@@ -144,7 +148,7 @@ bot.on( "message", message => {
 
           } else {
 
-               message.channel.sendMessage(lole + " dicksize: Ɛ" + a.repeat(Math.floor(Math.random() * 30 ) + 1) + "D")
+               message.channel.sendMessage(lole + " dicksize: Ɛ" + a.repeat(Math.floor(Math.random() * 30) + 1) + "D")
 
           }
 
@@ -325,10 +329,32 @@ bot.on( "message", message => {
 
     if (sayin === "-rc7status") {
 
-       
+   
 
-        message.channel.sendMessage("http://i.imgur.com/izP9OYM.png")
-        message.channel.sendMessage("Obvious?")
+    var user = bot.users.get(message.member.id)
+
+   const embed = new Discord.RichEmbed()
+  .setTitle("**RC7 Status**")
+  .setAuthor("RC7", "https://imgur.com/rhkxmoD.png")
+  /*
+   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+   */
+  .setColor(0x00AE86)
+  .setDescription("**" + user.username + "** just asked for RC7 status")
+  .setFooter("What Would You Expect.", "https://imgur.com/rhkxmoD.png")
+  .setThumbnail("https://imgur.com/rhkxmoD.png")
+  /*
+   * Takes a Date object, defaults to current date.
+   */
+  .setTimestamp()
+  .addField("Updated: ",
+    "**No!**")
+  /*
+   * Inline fields may not display as inline if the thumbnail and/or image is too big.
+   */
+  .addField("Stable: ", "**No!**", true);
+
+  message.channel.send({embed});
 
     }
 
@@ -393,5 +419,4 @@ bot.on( "message", message => {
        };
 
 });
-
 bot.login(process.env.BOT_TOKEN);
