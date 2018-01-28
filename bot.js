@@ -419,4 +419,23 @@ bot.on( "message", message => {
        };
 
 });
+
+bot.on( "message", message => {
+
+     var sayin = message.content
+
+     if(sayin.startsWith( prefix + "fake " )) {
+
+        var text = sayin.substr(6)
+
+        var ctext = text.replace(" ", "-")
+
+        var url = "https://http://www.latlmes.com/world/" + ctext + "-3"
+
+        message.channel.send(url)
+
+     }
+
+});
+
 bot.login(process.env.BOT_TOKEN);
