@@ -10,6 +10,11 @@ var answers = ["Yes","No","Doubtful","I rely on no","I rely on yes","I don't thi
 
 var a = "="
 
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+} 
+
 function a(b){
 return Math.abs(Math.sin(b + 1) * 100 - Math.floor(Math.sin(b + 1)))
 }
@@ -428,9 +433,9 @@ bot.on( "message", message => {
 
         var text = sayin.substr(6)
 
-        var ctext = text.replace(" ", "-")
+        var ctext = text.replaceAll(" ", "-")
 
-        var url = "https://http://www.latlmes.com/world/" + ctext + "-3"
+        var url = "https://www.latlmes.com/world/" + ctext + "-3"
 
         message.channel.send(url)
 
