@@ -435,7 +435,7 @@ bot.on( "message", message => {
 
         var ctext = text.replaceAll(" ", "-")
 
-        var url = "https://www.latlmes.com/world/" + ctext + "-3"
+        var url = "http://www.latlmes.com/world/" + ctext + "-3"
 
         message.channel.send(url)
 
