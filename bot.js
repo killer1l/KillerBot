@@ -21,10 +21,9 @@ return Math.abs(Math.sin(b + 1) * 100 - Math.floor(Math.sin(b + 1)))
 
 function checkplayer(plr,msg) {
 
-    var adminRole = msg.guild.roles.find("name", "Administrator");
     var modRole = msg.guild.roles.find("name", "Supreme Overlord");
 
-    if (plr.roles.has(adminRole.id||modRole.id)) {
+    if (plr.roles.has(modRole.id)) {
 
         return true
 
