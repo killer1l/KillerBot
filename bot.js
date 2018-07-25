@@ -44,8 +44,8 @@ bot.on( "message", message => {
   var sayin = message.content;
 
     if (sayin.startsWith(prefix)) {
+      if (checkchannel(message, "verify")) {
       if (sayin.startsWith(prefix + "verify")) {
-        if (checkchannel(message, "verify")) {
           if (checkplayer(message.member, message, "Authenticated")) {
             if (checkplayer(message.member, message, "Moderator") || checkplayer(message.member, message, "Server Owners")) {
               if (message.mentions.members.first()) {
@@ -63,10 +63,9 @@ bot.on( "message", message => {
               message.channel.send("Hello <@" + message.author.id + ">, you're alredy Authenticated.")
             }
           } else {
-            message.author.send("Hello <@" + message.author.id + ">! In order to verify you must first read rules. After that pm an admin with the proof. After the admin accepted you. You will be Authenticated.")
+            message.author.send("Hello <@" + message.author.id + ">! In order to verify you must first read rules. After that dm a staff with the proof. After the staff accepted you. You will be Authenticated.")
             message.channel.send("Hello <@" + message.author.id + ">! Please check your private messages in order to be Authenticated.")
           }
-        }
       }
 
       if (sayin.startsWith(prefix + "unverify")) {
@@ -86,7 +85,34 @@ bot.on( "message", message => {
           message.channel.send("Insuficient permissions.")
         }
       }
+
+      if (sayin.startsWith(prefix + "help")) {
+        const embed = new Discord.RichEmbed()
+  .setTitle("")
+  .setAuthor("RC7 Bot")
+  /*
+   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+   */
+  .setColor(0x00AE86)
+  .setDescription("")
+  .setFooter("RC7 Bot")
+  /*
+   * Takes a Date object, defaults to current date.
+   */
+  .addField(".verify"," Verify a user or get info on how to verify.")
+  /*
+   * Inline fields may not display as inline if the thumbnail and/or image is too big.
+   */
+  .addField(".unverify"," Unverify a user.")
+  /*
+   * Blank field, useful to create some space.
+   */
+  .addField(".help", "Shows help menu.");
+
+  message.channel.send({embed});
+      }
     }
+  }
 
 });
 
