@@ -4,6 +4,8 @@ const bot = new Discord.Client();
 
 var prefix = "."
 
+var names = []
+
 function checkplayer(plr,msg,name) {
 
     var adminRole = msg.guild.roles.find("name", name);
