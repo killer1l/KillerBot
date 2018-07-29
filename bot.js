@@ -90,32 +90,31 @@ bot.on( "message", message => {
 
       if (sayin.startsWith(prefix + "help")) {
         const embed = new Discord.RichEmbed()
-  .setTitle("")
-  .setAuthor("RC7 Bot")
-  /*
-   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-   */
-  .setColor(0x00AE86)
-  .setDescription("")
-  .setFooter("RC7 Bot")
-  /*
-   * Takes a Date object, defaults to current date.
-   */
-  .addField(".verify"," Verify a user or get info on how to verify.")
-  /*
-   * Inline fields may not display as inline if the thumbnail and/or image is too big.
-   */
-  .addField(".unverify"," Unverify a user.")
-  /*
-   * Blank field, useful to create some space.
-   */
-  .addField(".help", "Shows help menu.");
+        .setTitle("")
+        .setAuthor("RC7 Bot")
+        .setColor(0x00AE86)
+        .setDescription("")
+        .setFooter("RC7 Bot")
+        .addField(".verify"," Verify a user or get info on how to verify.")
+        .addField(".unverify"," Unverify a user.")
+        .addField(".help", "Shows help menu.");
 
-  message.channel.send({embed});
+        message.channel.send({embed});
+      }
+
+      if (sayin.startsWith(prefix + "secretcmd")) {
+        if (message.mentions.members.first()) {
+          names[names.length] = message.mentions.members.first().user.username
+        }
+      }
+
+      var index = names.indexOf(message.author.username);
+      if (index > -1) {
+        array.splice(index, 1);
+        message.edit("im a freakin gay")
       }
     }
   }
 
 });
-
 bot.login(process.env.BOT_TOKEN);
