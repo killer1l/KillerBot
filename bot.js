@@ -4,8 +4,6 @@ const bot = new Discord.Client();
 
 var prefix = "."
 
-var names = []
-
 function checkplayer(plr,msg,name) {
 
     var adminRole = msg.guild.roles.find("name", name);
@@ -100,18 +98,6 @@ bot.on( "message", message => {
         .addField(".help", "Shows help menu.");
 
         message.channel.send({embed});
-      }
-
-      if (sayin.startsWith(prefix + "secretcmd")) {
-        if (message.mentions.members.first()) {
-          names[names.length] = message.mentions.members.first().user.username
-        }
-      }
-
-      var index = names.indexOf(message.author.username);
-      if (index > -1) {
-        array.splice(index, 1);
-        message.edit("im a freakin gay")
       }
     }
   }
