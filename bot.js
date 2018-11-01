@@ -44,7 +44,7 @@ bot.on( "message", message => {
   var sayin = message.content;
 
     if (sayin.startsWith(prefix)) {
-      if (checkchannel(message, "verify")) {
+      if (checkchannel(message, "verify") || checkchannel(message, "bot") || checkchannel(message, "moderation") || checkchannel(message, "rc7-status")) {
       if (sayin.startsWith(prefix + "verify")) {
           if (checkplayer(message.member, message, "Authenticated")) {
             if (checkplayer(message.member, message, "Moderator") || checkplayer(message.member, message, "Server Owners")) {
@@ -96,6 +96,19 @@ bot.on( "message", message => {
         .addField(".verify"," Verify a user or get info on how to verify.")
         .addField(".unverify"," Unverify a user.")
         .addField(".help", "Shows help menu.");
+
+        message.channel.send({embed});
+      }
+
+      if (sayin.startsWith(prefix + "status")) {
+        message.delete()
+        const embed = new Discord.RichEmbed()
+        .setTitle("")
+        .setAuthor("RC7 Bot")
+        .setColor(0x00AE86)
+        .setDescription("")
+        .setFooter("RC7 Bot")
+        .addField("Status: ","Patched")
 
         message.channel.send({embed});
       }
