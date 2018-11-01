@@ -106,9 +106,9 @@ bot.on( "message", message => {
         .setTitle("")
         .setAuthor("RC7 Bot")
         .setColor(0x00AE86)
-        .setDescription("")
-        .setFooter("RC7 Bot")
-        .addField("Status: ","Patched")
+        .setDescription("Don't have RC7? [Buy Here](http://www.youareanidiot.org/) <-- WIP")
+        .setFooter("Copyright RC7 Bot 2018 Sucka")
+        .addField("Status: ","Patched", true)
 
         message.channel.send({embed});
       }
