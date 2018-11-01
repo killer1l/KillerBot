@@ -57,7 +57,7 @@ bot.on( "message", message => {
                   message.mentions.members.first().removeRole(message.guild.roles.find("name", "Unauthenticated").id)
                 }
               } else { 
-                message.channel.send("Wrong usage. Use: !verify @UserName")
+                message.channel.send("Wrong usage. Use: .verify @UserName")
               }
             } else {
               message.channel.send("Hello <@" + message.author.id + ">, you're alredy Authenticated.")
