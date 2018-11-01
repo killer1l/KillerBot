@@ -79,7 +79,7 @@ bot.on( "message", message => {
               message.channel.send("User is alredy Unauthenticated")
             }
           } else {
-            message.channel.send("Wrong usage. Use: !unverify @UserName")
+            message.channel.send("Wrong usage. Use: .unverify @UserName")
           }
         } else {
           message.channel.send("Insuficient permissions.")
